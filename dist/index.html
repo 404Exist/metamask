@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="./assets/mint-img.png" type="x-icon">
+  <title>Kahiru</title>
+</head>
+
+<body>
+  <div class="full-screen">
+    <video src="./assets/video.mp4" autoplay muted loop></video>
+  </div>
+  <div class="container">
+    <div class="wrapper">
+      <ul class="container__list">
+        <li class="container__list-item">
+          <a href="https://twitter.com/kahiruNFT" class="container__list-link" target="_blank">
+            <div class="icon-twitter.png"></div>
+          </a>
+        </li>
+        <li class="container__list-item">
+          </a>
+        </li>
+      </ul>
+      <div class="mint">
+        <h4 class="mint__title">Mint your Kingdom X</h4>
+        <span class="mint__subtitle">5 Differents Bairties</span>
+        <div class="mint__subtitle" id="walletAddress"></div>
+        <div class="mint__container">
+          <img src="./assets/mint-img.png" class="mint__img">
+          <div class="mint__text-container">
+            <span class="mint__price-text">Price Per Mint</span>
+            <span class="mint__price"><span id="cost"></span> ETH + gas</span>
+            <span class="mint__public-sale">Date: <span id="date"></span></span>
+          </div>
+        </div>
+        <div class="mint__number">
+          <button class="mint__btn-minus" id="minus"><div class="icon-minus"></div></button>
+          <input type="number" min="1" value="1" readonly class="mint__input-price" id="mintnumber">
+          <button class="mint__btn-plus" id="plus"><div class="icon-plus"></div></button>
+          <button class="mint__max"><span id="max"></span> NFT</button>
+        </div>
+        <div class="mint__total">
+          <h6 class="mint__total-title">Total</h6>
+          <span class="mint__total-price"><span id="total">0.1</span> ETH + gas</span>
+        </div>
+        <button class="mint__btn" id="connectBtn"></button>
+      </div>
+    </div>
+  </div>
+  <script src="./js/constants.js"></script>
+<script defer src="js/app.js"></script></body>
+</html>
