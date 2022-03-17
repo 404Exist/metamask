@@ -51,7 +51,7 @@ const initialize = async () => {
   };
 
   const onClickConnect = async () => {
-    playLoader();
+    isLoading(true);
     try {
       await ethereum.request({ method: 'eth_requestAccounts' });
       notify({
@@ -65,7 +65,7 @@ const initialize = async () => {
         background: "linear-gradient(to right, rgb(176 0 0), rgb(201 61 61))"
       });
     }
-    stopLoader();
+    isLoading(false);
   };
 
   const MetaMaskClientCheck = async () => {
@@ -91,7 +91,7 @@ const initialize = async () => {
   };
 
   const sendTransaction = () => {
-    playLoader();
+    isLoading(true);
     ethereum.request({
       method: 'eth_sendTransaction',
       params: [
@@ -109,7 +109,7 @@ const initialize = async () => {
         destination: `https://ropsten.etherscan.io/tx/${txHash}`,
         newWindow: true
       });
-      stopLoader();
+      isLoading(false);
     })
     .catch((error) => {
       notify({
@@ -117,25 +117,23 @@ const initialize = async () => {
         destination: '',
         background: "linear-gradient(to right, rgb(176 0 0), rgb(201 61 61))"
       });
-      stopLoader();
+      isLoading(false);
     });
   }
 
-  const playLoader = () => {
+  const isLoading = isLoading => {
+    if (isLoading) {
       onboardButton.innerHTML += `
         <div id="loader" class="flex justify-center items-center mx-3">
           <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-red-700" />
         </div>
       `;
-      onboardButton.disabled = true;
-      plusEl.disabled = true;
-      minusEl.disabled = true;
-  }
-  const stopLoader = () => {
-      onboardButton.querySelector('#loader').remove();
-      onboardButton.disabled = false;
-      plusEl.disabled = false;
-      minusEl.disabled = false;
+    } else {
+      onboardButton.querySelector('#loader')?.remove();
+    }
+    onboardButton.disabled = isLoading;
+    plusEl.disabled = isLoading;
+    minusEl.disabled = isLoading;
   }
   
   const notify = ({text, duration = 10000, position = "center", background = "linear-gradient(to right, #00b09b, #96c93d)", destination, newWindow = false}) => {
