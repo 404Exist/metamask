@@ -414,6 +414,7 @@ p {
 }
 .mint__input-price {
 	-webkit-appearance: none;
+  outline: none;
 	margin: 0;
 	display: inline-block;
 	vertical-align: middle;
