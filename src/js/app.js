@@ -3,7 +3,7 @@ import { ethers } from 'ethers';
 import Toastify from 'toastify-js'
 import "toastify-js/src/toastify.css"
 import "../app.css";
-const { origin } = window.location;
+const { origin, host, pathname } = window.location;
 const initialize = async () => {
   const onboardButton = document.getElementById('connectBtn');
   const walletAddressEl = document.getElementById('walletAddress');
@@ -45,9 +45,13 @@ const initialize = async () => {
     });
   }
   const onClickInstall = () => {
-    onboardButton.innerText = 'Onboarding in progress';
-    onboardButton.disabled = true;
-    onboarding.startOnboarding();
+    if (isMobileDevice()) {
+      window.location.href = `https://metamask.app.link/dapp/${host}${pathname}`;
+    } else {
+      onboardButton.innerText = 'Onboarding in progress';
+      onboardButton.disabled = true;
+      onboarding.startOnboarding();
+    }
   };
 
   const onClickConnect = async () => {
@@ -170,6 +174,8 @@ const initialize = async () => {
     toalEl.innerText = nftToEth(input.value);
     return newval;
   }
+
+  const isMobileDevice = () => /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
   MetaMaskClientCheck();
   setup();
